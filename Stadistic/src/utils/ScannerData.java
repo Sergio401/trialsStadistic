@@ -9,47 +9,46 @@ public class ScannerData {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Ingresar nombre: ");
-        String name = scanner.nextLine();
+        Integer idTrial = scanner.nextInt();
 
         System.out.print("Ingresar tipo de proceso: ");
         String type = scanner.nextLine();
 
-        System.out.print("Ingresar fecha de entrada: ");
+        System.out.print("Ingresar fecha de entrada (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();
 
-        System.out.print("Ingresar fecha de salida: ");
+        System.out.print("Ingresar fecha de salida (DD/MM/AAAA): ");
         String dateOutcome = scanner.nextLine();
 
         System.out.print("ingresar descripción de salida: ");
         String reason = scanner.nextLine();
 
-        return createNewTrial(name, type, dateIncome, dateOutcome, reason);
+        return createNewTrial(idTrial, type, dateIncome, dateOutcome, reason);
     }
 
     private static Trial createNewTrial(
-        String name,
+        Integer idTrial,
         String type,
         String dateIncome,
         String dateOutcome,
         String reason
     ) {
-
-        Date dateIncomeObject = new Date(12, 4, 21);
-        Date dateOutcomeObject = new Date(4, 9, 22);
-
-        return new Trial(name, type, dateIncomeObject, dateOutcomeObject, reason);
+        return new Trial(
+            idTrial,
+            type,
+            dateTransform(dateIncome),
+            dateTransform(dateOutcome),
+            reason
+        );
     }
 
+    private static Date dateTransform(String date) {
+        String[] splitDate = date.split("/");
+
+        return new Date(
+            Integer.parseInt(splitDate[0]), // Day
+            Integer.parseInt(splitDate[1]), // Month
+            Integer.parseInt(splitDate[2]) // Year
+        );
+    }
 }
-
-
-
-/*
- "CONTRATO 1"
-         + "\nNombre: " + name
-         + "\nTipo de contrato: " + type
-         + "\nDía de Entrada: " + dateIncome
-         + "\nDía de Salida: " + dateOutcome
-         + "\nRazón de salida: " + reason;
-
- */

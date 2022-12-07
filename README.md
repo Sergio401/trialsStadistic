@@ -4,8 +4,8 @@ This project is a Java application for managing the statistics of judicial proce
 
 ## Features
 
-- Track the number of processes per type, status, and court clerk.
-- Generate reports on the average time it takes to resolve a process, the number of processes per month, and other useful statistics.
+- Track the number of processes per id, type, status, start date, end date, reason to end process.
+- Generate reports on the number of processes per month, and other useful statistics.
 - Export the data to a CSV file for further analysis.
 
 ## Requirements

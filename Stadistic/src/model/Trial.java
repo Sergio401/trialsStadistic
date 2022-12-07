@@ -1,13 +1,12 @@
 package model;
 
-import model.Date;
-
 public class Trial {
-    private final String name, type, reason;
+    private final String type, reason;
+    private final Integer idTrial;
     private final Date arrivalDate, closeDate;
 
-    public Trial(String name, String type, Date arrivalDate, Date closeDate, String reason){
-        this.name = name;
+    public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason){
+        this.idTrial = idTrial;
         this.type = type;
         this.arrivalDate = arrivalDate;
         this.closeDate = closeDate;
@@ -16,10 +15,12 @@ public class Trial {
 
     public String toString(){
         return
-            "Nombre: " + name
-            + "\nTipo: " + type
-            + "\nFecha de Entrada: " + arrivalDate
-            + "\nFecha de Salida: " + closeDate
-            + "\nRazón: " + reason;
+            "\nCONTRATO CORRECTAMENTE GUARDADO"
+            + "\n"
+            + "\nNombre: " + idTrial
+            + "\nTipo de contrato: " + type
+            + "\nFecha de entrada: " + arrivalDate
+            + "\nFecha de salida: " + closeDate
+            + "\nRazón de salida: " + reason;
     }
 }
