@@ -3,8 +3,8 @@ package model;
 import model.Date;
 
 public class Trial {
-    private String name, type, reason;
-    private Date arrivalDate, closeDate;
+    private final String name, type, reason;
+    private final Date arrivalDate, closeDate;
 
     public Trial(String name, String type, Date arrivalDate, Date closeDate, String reason){
         this.name = name;
