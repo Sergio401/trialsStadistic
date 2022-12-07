@@ -15,6 +15,11 @@ public class Trial {
     }
 
     public String toString(){
-        return name + " " + type + " " + arrivalDate + " " + closeDate + " " + reason;
+        return
+            "Nombre: " + name
+            + "\nTipo: " + type
+            + "\nFecha de Entrada: " + arrivalDate
+            + "\nFecha de Salida: " + closeDate
+            + "\nRazón: " + reason;
     }
 }

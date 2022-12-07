@@ -2,12 +2,16 @@ package test;
 
 import model.Date;
 import model.Trial;
+import utils.ScannerData;
 
 public class Main {
     public static void main(String[] args) {
-        Date date1 = new Date(12, 4, 21);
-        Date date2 = new Date(4, 9, 22);
-        Trial trial = new Trial("010", "judicial", date1, date2,"Cualquier cosa");
-        System.out.println(trial);
+        // Create contract object
+        /* Date dateIncomeObject = new Date(12, 4, 21);
+        Date dateOutcomeObject = new Date(4, 9, 22);
+        Trial trial = new Trial("010", "judicial", dateIncomeObject, dateOutcomeObject,"Cualquier cosa");
+        System.out.print(trial);
+         */
+        System.out.println(ScannerData.askForData());
     }
 }
