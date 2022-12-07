@@ -8,8 +8,15 @@ public class ScannerData {
     public static Trial askForData() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingresar nombre: ");
-        Integer idTrial = scanner.nextInt();
+        System.out.println(" ");
+        System.out.println("INGRESO DE PROCESO - SIGA LAS INSTRUCCIONES");
+        System.out.println("============================================");
+        System.out.println(" ");
+
+        //TODO: I'm not sure if the 19 line is correct
+
+        System.out.print("Ingresar número de proceso: ");
+        Integer idTrial = Integer.valueOf(scanner.nextLine());
 
         System.out.print("Ingresar tipo de proceso: ");
         String type = scanner.nextLine();

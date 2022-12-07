@@ -7,25 +7,53 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("BIENVENIDO A SU SISTEMA DE ESTADISTICAS DEL JUZGADO");
-        System.out.println("Por favor ingrese la opción que quiere usar: ");
-        System.out.println("Para ingresar proceso marque 1");
-        System.out.println("Para mostrar todos los procesos marque 2");
-        System.out.print("Ingrese número: ");
+        final int EXIT_OPTION = 3;
+        int optionSelected = interfaceUser();
 
-        int inputUser = scanner.nextInt();
-
-        if (inputUser == 1) {
-            Trial trial = ScannerData.askForData();
-            Court.saveTrials(trial);
-            Court.getTrials();
-        } else if (inputUser == 2) {
-            Court.getTrials();
-        } else {
-            System.out.println("Número incorrecto");
-            System.exit(0);
+        while (optionSelected != EXIT_OPTION) {
+            menuOption(optionSelected);
+            optionSelected = interfaceUser();
         }
     }
+
+    public static Integer interfaceUser() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(" ");
+        System.out.println("===================================================");
+        System.out.println("BIENVENIDO A SU SISTEMA DE ESTADISTICAS DEL JUZGADO");
+        System.out.println("===================================================");
+        System.out.println(" ");
+        System.out.println("Por favor ingrese la opción que quiere usar: ");
+        System.out.println(" - Para ingresar proceso marque 1");
+        System.out.println(" - Para mostrar todos los procesos marque 2");
+        System.out.println(" - Salir del programa");
+        System.out.println(" ");
+        System.out.print("INGRESE NÚMERO: ");
+
+        return scanner.nextInt();
+    }
+
+    public static void menuOption(Integer option) {
+        switch (option) {
+            case 1:
+                Trial trial = ScannerData.askForData();
+                Court.saveTrials(trial);
+                Court.getTrials();
+                break;
+            case 2:
+                Court.getTrials();
+                break;
+            case 3:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("NUMERO INCORRECTO");
+                System.out.println("Ingrese una opción valida");
+                interfaceUser();
+                break;
+        }
+    }
+
 }
