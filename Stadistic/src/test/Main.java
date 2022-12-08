@@ -39,11 +39,11 @@ public class Main {
         switch (option) {
             case 1:
                 Trial trial = ScannerData.askForData();
-                Court.saveTrials(trial);
-                Court.getTrials();
+                Court.addTrial(trial);
+                //Court.getTrials();
                 break;
             case 2:
-                Court.getTrials();
+                Court.getAllTrials();
                 break;
             case 3:
                 System.exit(0);

@@ -5,6 +5,7 @@ import model.Date;
 import java.util.Scanner;
 
 public class ScannerData {
+
     public static Trial askForData() {
         Scanner scanner = new Scanner(System.in);
 

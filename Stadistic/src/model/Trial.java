@@ -15,12 +15,11 @@ public class Trial {
 
     public String toString(){
         return
-            "\nCONTRATO CORRECTAMENTE GUARDADO"
-            + "\n"
-            + "\nNombre: " + idTrial
+            "\nNombre: " + idTrial
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate
             + "\nRazón de salida: " + reason;
     }
+
 }
