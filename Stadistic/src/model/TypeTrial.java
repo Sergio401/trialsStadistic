@@ -42,7 +42,7 @@ public class TypeTrial {
         }
         return type;
     }
-    public static void optionType(){
+    public static void printOptionsType(){
         System.out.println("Para el tipo de proceso marque la opción correspondiente: "
                 + "\n1 → ORDINARIOS - CONTROVERSIAS DE SEGURIDAD SOCIAL - ÚNICA INSTANCIA"
                 + "\n2 → ORDINARIOS - CONTROVERSIAS CONTRATOS DE TRABAJO - ÚNICA INSTANCIA"
@@ -54,7 +54,8 @@ public class TypeTrial {
                 + "\n8 → EJECUTIVOS - OTROS"
                 + "\n9 → CONCILIACIÓN EXTRAJUDICIAL"
                 + "\n10 → OTROS"
-                + "\n11 → FUERO SINDICAL");
+                + "\n11 → FUERO SINDICAL"
+                + "\n");
     }
 }
 

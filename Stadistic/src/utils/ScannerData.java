@@ -13,9 +13,9 @@ public class ScannerData {
         System.out.println("============================================");
         System.out.println(" ");
 
-        TypeTrial.optionType();
+        TypeTrial.printOptionsType();
 
-        System.out.print("\nTIPO DE PROCESO - Ingresar tipo de proceso: ");
+        System.out.print("TIPO DE PROCESO - Ingresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
         String type = TypeTrial.assignType(option);
 
@@ -68,7 +68,7 @@ public class ScannerData {
 
     public static String askToStatistic() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\nIngresar tipo de proceso: ");
+        System.out.print("Ingresar el TIPO del proceso por el que desea buscar: ");
         int option = Integer.parseInt(scanner.nextLine());
         return TypeTrial.assignType(option);
     }
