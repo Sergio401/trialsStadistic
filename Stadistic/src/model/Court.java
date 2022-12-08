@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Court {
     private static final Trial[] trials = new Trial[10];
 
@@ -42,32 +44,48 @@ public class Court {
         return foundTrial;
     }
 
-    public static int arrivals(String type) {
-        int numberOfarrivals = 0;
-        for (int i = 0; i < trials.length ; i++) {
-            if (trials[i] != null && trials[i].getType() == type) {
-                numberOfarrivals++;
+    public static int arrivalsTrials(String type) {
+        int numberArrivals = 0;
+        for (Trial trial : trials) {
+            if (trial != null &&
+                Objects.equals(trial.getType(), type))
+            {
+                numberArrivals++;
             }
         }
-        return numberOfarrivals;
+        return numberArrivals;
     }
 
-    public static int closes(String type) {
-        int numberOfCloses = 0;
-        for (int i = 0; i < trials.length; i++) {
-            if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() != null) {
-                numberOfCloses++;
+    public static int closesTrials(String type) {
+        int numberCloses = 0;
+        for (Trial trial : trials) {
+            if (trial != null &&
+                Objects.equals(trial.getType(), type) &&
+                trial.getCloseDate() != null)
+            {
+                numberCloses++;
             }
         }
-        return numberOfCloses;
+        return numberCloses;
     }
-    public static int actives(String type) {
-        int numberOfActives = 0;
-        for (int i = 0; i < trials.length; i++) {
-            if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() == null) {
-                numberOfActives++;
+    public static int activesTrials(String type) {
+        int numberActives = 0;
+        for (Trial trial : trials) {
+            if (trial != null &&
+                Objects.equals(trial.getType(), type) &&
+                trial.getCloseDate() == null)
+            {
+                numberActives++;
             }
         }
-        return numberOfActives;
+        return numberActives;
     }
 }
+
+/*
+for (int i = 0; i < trials.length; i++) {
+    if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() == null) {
+        numberActives++;
+    }
+}
+ */

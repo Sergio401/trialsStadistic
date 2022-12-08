@@ -2,7 +2,6 @@ package test;
 
 import model.Court;
 import model.Trial;
-import model.TypeTrial;
 import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
@@ -69,12 +68,11 @@ public class Main {
                 break;
             case 5:
                 String insertedType = ScannerData.askToStadistic();
-                System.out.println("Entradas: " + Court.arrivals(insertedType));
-                System.out.println("Salidas: " + Court.closes(insertedType));
-                System.out.println("Activos: " + Court.actives(insertedType));
+                System.out.println("Entradas: " + Court.arrivalsTrials(insertedType));
+                System.out.println("Salidas: " + Court.closesTrials(insertedType));
+                System.out.println("Activos: " + Court.activesTrials(insertedType));
                 break;
             case 6:
-
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
