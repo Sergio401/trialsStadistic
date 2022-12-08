@@ -3,6 +3,7 @@ package test;
 import model.Court;
 import model.Trial;
 import model.TypeTrial;
+import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
 
@@ -45,13 +46,19 @@ public class Main {
             case 1:
                 Trial trial = ScannerData.askForData();
                 Court.addTrial(trial);
+                ControllerInterface.cleanInterface();
                 System.out.println(Court.getLastTrial());
+                ControllerInterface.nextStep();
                 break;
             case 2:
+                ControllerInterface.cleanInterface();
                 PrintData.printTrials(Court.getAllTrials());
+                ControllerInterface.nextStep();
                 break;
             case 3:
+                ControllerInterface.cleanInterface();
                 PrintData.printTrialsFile(Court.getAllTrials());
+                ControllerInterface.nextStep();
                 break;
             case 4:
                 break;
