@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public class Court {
     private static final Trial[] trials = new Trial[10];
 
@@ -28,8 +26,8 @@ public class Court {
         return theLastTrial;
     }
 
-    public static void getAllTrials() {
-        System.out.println(Arrays.toString(trials));
+    public static Trial[] getAllTrials() {
+        return trials;
     }
 
 }
