@@ -16,7 +16,7 @@ public class ControllerInterface {
         String userInput = scanner.nextLine();
 
         if(Objects.equals(userInput, "s")) {
-            return;
+            cleanInterface();
         }
         else if (Objects.equals(userInput, "n")) {
             System.exit(0);

@@ -1,5 +1,4 @@
 package utils;
-import model.Court;
 import model.Trial;
 import model.Date;
 import model.TypeTrial;
@@ -16,20 +15,20 @@ public class ScannerData {
 
         TypeTrial.optionType();
 
-        System.out.print("\nIngresar tipo de proceso: ");
+        System.out.print("\nTIPO DE PROCESO - Ingresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
         String type = TypeTrial.assignType(option);
 
-        System.out.print("Ingresar número de proceso: ");
+        System.out.print("NÚMERO DE PROCESO - Ingresar número de proceso: ");
         int idTrial = Integer.parseInt(scanner.nextLine());
 
-        System.out.print("Ingresar fecha de entrada (DD/MM/AAAA): ");
+        System.out.print("FECHA DE ENTRADA - Ingresar fecha de entrada (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();
 
-        System.out.print("Ingresar fecha de salida (DD/MM/AAAA): ");
+        System.out.print("FECHA DE SALIDA - Ingresar fecha de salida (DD/MM/AAAA): ");
         String dateOutcome = scanner.nextLine();
 
-        System.out.print("ingresar descripción de salida: ");
+        System.out.print("RAZÓN DE SALIDA - ingresar descripción de salida: ");
         String reason = scanner.nextLine();
 
         return createNewTrial(idTrial, type, dateIncome, dateOutcome, reason);
@@ -67,11 +66,10 @@ public class ScannerData {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String askToStadistic() {
+    public static String askToStatistic() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nIngresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
-        String type = TypeTrial.assignType(option);
-        return type;
+        return TypeTrial.assignType(option);
     }
 }
