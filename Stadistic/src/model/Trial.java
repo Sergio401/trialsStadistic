@@ -1,10 +1,10 @@
 package model;
 
 public class Trial {
-    private String type;
-    private String reason;
-    private Integer idTrial;
-    private Date arrivalDate, closeDate;
+    private final String type;
+    private final String reason;
+    private final Integer idTrial;
+    private final Date arrivalDate, closeDate;
 
     public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason){
         this.idTrial = idTrial;
@@ -16,7 +16,7 @@ public class Trial {
 
     public String toString(){
         return
-            "\nNombre: " + idTrial
+            "\nNúmero de proceso: " + idTrial
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate

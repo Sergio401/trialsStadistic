@@ -14,12 +14,13 @@ public class ScannerData {
         System.out.println(" ");
 
         TypeTrial.optionType();
-        System.out.print("Ingresar número de proceso: ");
-        int idTrial = Integer.parseInt(scanner.nextLine());
 
-        System.out.print("Ingresar tipo de proceso: ");
+        System.out.print("\nIngresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
         String type = TypeTrial.assignType(option);
+
+        System.out.print("Ingresar número de proceso: ");
+        int idTrial = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingresar fecha de entrada (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();

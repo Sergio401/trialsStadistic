@@ -34,6 +34,7 @@ public class Main {
         System.out.println(" - Para mostrar todos los procesos - marque 2");
         System.out.println(" - Para imprimir procesos - marque 3");
         System.out.println(" - Para buscar un proceso - marque 4");
+        System.out.println(" - Para salir - marque 5");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -43,9 +44,9 @@ public class Main {
     public static void menuOption(int option) {
         switch (option) {
             case 1:
+                ControllerInterface.cleanInterface();
                 Trial trial = ScannerData.askForData();
                 Court.addTrial(trial);
-                ControllerInterface.cleanInterface();
                 System.out.println(Court.getLastTrial());
                 ControllerInterface.nextStep();
                 break;
@@ -60,8 +61,12 @@ public class Main {
                 ControllerInterface.nextStep();
                 break;
             case 4:
+                ControllerInterface.cleanInterface();
                 int idTrial = ScannerData.askToSearch();
                 System.out.println(Court.searchTrial(idTrial));
+                ControllerInterface.nextStep();
+                break;
+            case 5:
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
