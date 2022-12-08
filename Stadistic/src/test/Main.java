@@ -3,12 +3,14 @@ package test;
 import model.Court;
 import model.Trial;
 import utils.ScannerData;
+import utils.PrintData;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        final int EXIT_OPTION = 3;
+        final int EXIT_OPTION = 4;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -26,9 +28,10 @@ public class Main {
         System.out.println("===================================================");
         System.out.println(" ");
         System.out.println("Por favor ingrese la opción que quiere usar: ");
-        System.out.println(" - Para ingresar proceso marque 1");
-        System.out.println(" - Para mostrar todos los procesos marque 2");
-        System.out.println(" - Salir del programa");
+        System.out.println(" - Para ingresar proceso - marque 1");
+        System.out.println(" - Para mostrar todos los procesos - marque 2");
+        System.out.println(" - Para imprimir procesos - marque 3");
+        System.out.println(" - Para salir del programa - marque 4");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -43,15 +46,12 @@ public class Main {
                 System.out.println(Court.getLastTrial());
                 break;
             case 2:
-                Trial[] trials = Court.getAllTrials();
-                // int i=0; i<trials.length; i++
-                for (Trial value : trials) {
-                    if (value != null) {
-                        System.out.println(value);
-                    }
-                }
+                PrintData.printTrials(Court.getAllTrials());
                 break;
             case 3:
+                PrintData.printTrialsFile(Court.getAllTrials());
+                break;
+            case 4:
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
