@@ -2,7 +2,9 @@ package test;
 
 import model.Court;
 import model.Trial;
+import model.TypeTrial;
 import utils.ScannerData;
+
 import java.util.Scanner;
 
 public class Main {
@@ -24,6 +26,8 @@ public class Main {
         System.out.println("===================================================");
         System.out.println("BIENVENIDO A SU SISTEMA DE ESTADISTICAS DEL JUZGADO");
         System.out.println("===================================================");
+            //TODO: Arreglar chambonada :3
+        TypeTrial.optionType();
         System.out.println(" ");
         System.out.println("Por favor ingrese la opción que quiere usar: ");
         System.out.println(" - Para ingresar proceso marque 1");
@@ -35,7 +39,7 @@ public class Main {
         return scanner.nextInt();
     }
 
-    public static void menuOption(Integer option) {
+    public static void menuOption(int option) {
         switch (option) {
             case 1:
                 Trial trial = ScannerData.askForData();
@@ -44,7 +48,6 @@ public class Main {
                 break;
             case 2:
                 Trial[] trials = Court.getAllTrials();
-                // int i=0; i<trials.length; i++
                 for (Trial value : trials) {
                     if (value != null) {
                         System.out.println(value);
