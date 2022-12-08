@@ -2,6 +2,7 @@ package test;
 
 import model.Court;
 import model.Trial;
+import model.TypeTrial;
 import utils.ScannerData;
 import utils.PrintData;
 
@@ -26,6 +27,7 @@ public class Main {
         System.out.println("===================================================");
         System.out.println("BIENVENIDO A SU SISTEMA DE ESTADISTICAS DEL JUZGADO");
         System.out.println("===================================================");
+        TypeTrial.optionType(); // Interface to ask for type
         System.out.println(" ");
         System.out.println("Por favor ingrese la opción que quiere usar: ");
         System.out.println(" - Para ingresar proceso - marque 1");
@@ -38,7 +40,7 @@ public class Main {
         return scanner.nextInt();
     }
 
-    public static void menuOption(Integer option) {
+    public static void menuOption(int option) {
         switch (option) {
             case 1:
                 Trial trial = ScannerData.askForData();

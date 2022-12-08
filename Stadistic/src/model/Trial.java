@@ -1,9 +1,10 @@
 package model;
 
 public class Trial {
-    private final String type, reason;
-    private final Integer idTrial;
-    private final Date arrivalDate, closeDate;
+    private String type;
+    private String reason;
+    private Integer idTrial;
+    private Date arrivalDate, closeDate;
 
     public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason){
         this.idTrial = idTrial;
@@ -21,5 +22,5 @@ public class Trial {
             + "\nFecha de salida: " + closeDate
             + "\nRazón de salida: " + reason;
     }
-
 }
+

@@ -1,6 +1,7 @@
 package utils;
 import model.Trial;
 import model.Date;
+import model.TypeTrial;
 
 import java.util.Scanner;
 
@@ -14,13 +15,12 @@ public class ScannerData {
         System.out.println("============================================");
         System.out.println(" ");
 
-        //TODO: I'm not sure if the 19 line is correct
-
         System.out.print("Ingresar número de proceso: ");
-        Integer idTrial = Integer.valueOf(scanner.nextLine());
+        int idTrial = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingresar tipo de proceso: ");
-        String type = scanner.nextLine();
+        int option = Integer.parseInt(scanner.nextLine());
+        String type = TypeTrial.assignType(option);
 
         System.out.print("Ingresar fecha de entrada (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();
