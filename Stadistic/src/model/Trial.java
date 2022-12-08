@@ -26,5 +26,12 @@ public class Trial {
     public int getIdTrial(){
         return idTrial;
     }
+
+    public String getType(){
+        return type;
+    }
+    public Date getCloseDate(){
+        return closeDate;
+    }
 }
 

@@ -5,8 +5,8 @@ public class Court {
 
     public static void addTrial(Trial trial) {
         boolean isInserted = false;
-        for(int i=0; i<trials.length && !isInserted; i++) {
-            if(trials[i] == null) {
+        for (int i = 0; i < trials.length && !isInserted; i++) {
+            if (trials[i] == null) {
                 trials[i] = trial;
                 isInserted = true;
             }
@@ -16,7 +16,7 @@ public class Court {
     public static Trial getLastTrial() {
         Trial theLastTrial = null;
         boolean isLastTrial = false;
-        for(int i=0; i<trials.length && !isLastTrial; i++) {
+        for (int i = 0; i < trials.length && !isLastTrial; i++) {
             if (trials[i] == null) {
                 int lastPosition = i - 1;
                 isLastTrial = true;
@@ -39,6 +39,35 @@ public class Court {
                 isTheTrial = true;
             }
         }
-       return foundTrial;
+        return foundTrial;
+    }
+
+    public static int arrivals(String type) {
+        int numberOfarrivals = 0;
+        for (int i = 0; i < trials.length ; i++) {
+            if (trials[i] != null && trials[i].getType() == type) {
+                numberOfarrivals++;
+            }
+        }
+        return numberOfarrivals;
+    }
+
+    public static int closes(String type) {
+        int numberOfCloses = 0;
+        for (int i = 0; i < trials.length; i++) {
+            if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() != null) {
+                numberOfCloses++;
+            }
+        }
+        return numberOfCloses;
+    }
+    public static int actives(String type) {
+        int numberOfActives = 0;
+        for (int i = 0; i < trials.length; i++) {
+            if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() == null) {
+                numberOfActives++;
+            }
+        }
+        return numberOfActives;
     }
 }

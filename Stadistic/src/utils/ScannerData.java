@@ -1,4 +1,5 @@
 package utils;
+import model.Court;
 import model.Trial;
 import model.Date;
 import model.TypeTrial;
@@ -35,18 +36,18 @@ public class ScannerData {
     }
 
     private static Trial createNewTrial(
-        Integer idTrial,
-        String type,
-        String dateIncome,
-        String dateOutcome,
-        String reason
+            Integer idTrial,
+            String type,
+            String dateIncome,
+            String dateOutcome,
+            String reason
     ) {
         return new Trial(
-            idTrial,
-            type,
-            dateTransform(dateIncome),
-            dateTransform(dateOutcome),
-            reason
+                idTrial,
+                type,
+                dateTransform(dateIncome),
+                dateTransform(dateOutcome),
+                reason
         );
     }
 
@@ -54,9 +55,9 @@ public class ScannerData {
         String[] splitDate = date.split("/");
 
         return new Date(
-            Integer.parseInt(splitDate[0]), // Day
-            Integer.parseInt(splitDate[1]), // Month
-            Integer.parseInt(splitDate[2]) // Year
+                Integer.parseInt(splitDate[0]), // Day
+                Integer.parseInt(splitDate[1]), // Month
+                Integer.parseInt(splitDate[2]) // Year
         );
     }
 
@@ -64,5 +65,13 @@ public class ScannerData {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingresar número de proceso: ");
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String askToStadistic() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nIngresar tipo de proceso: ");
+        int option = Integer.parseInt(scanner.nextLine());
+        String type = TypeTrial.assignType(option);
+        return type;
     }
 }

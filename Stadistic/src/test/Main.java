@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        final int EXIT_OPTION = 5;
+        final int EXIT_OPTION = 6;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -34,7 +34,8 @@ public class Main {
         System.out.println(" - Para mostrar todos los procesos - marque 2");
         System.out.println(" - Para imprimir procesos - marque 3");
         System.out.println(" - Para buscar un proceso - marque 4");
-        System.out.println(" - Para salir - marque 5");
+        System.out.println(" - Para buscar las estadísticas de un tipo de proceso - marque 5");
+        System.out.println(" - Para salir - marque 6");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -67,6 +68,13 @@ public class Main {
                 ControllerInterface.nextStep();
                 break;
             case 5:
+                String insertedType = ScannerData.askToStadistic();
+                System.out.println("Entradas: " + Court.arrivals(insertedType));
+                System.out.println("Salidas: " + Court.closes(insertedType));
+                System.out.println("Activos: " + Court.actives(insertedType));
+                break;
+            case 6:
+
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
