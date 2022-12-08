@@ -71,7 +71,6 @@ public class ScannerData {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nIngresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
-        String type = TypeTrial.assignType(option);
-        return type;
+        return TypeTrial.assignType(option);
     }
 }

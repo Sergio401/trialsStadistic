@@ -80,6 +80,18 @@ public class Court {
         }
         return numberActives;
     }
+
+    public static int averageTrials(){
+        int cont = 0;
+        int average = 0;
+        for (Trial trial : trials) {
+            if (trial != null){
+            cont++;
+            }
+            average = cont / 3;
+        }
+        return average;
+    }
 }
 
 /*
@@ -89,3 +101,4 @@ for (int i = 0; i < trials.length; i++) {
     }
 }
  */
+

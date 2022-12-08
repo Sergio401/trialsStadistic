@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        final int EXIT_OPTION = 6;
+        final int EXIT_OPTION = 7;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -34,7 +34,8 @@ public class Main {
         System.out.println(" - Para imprimir procesos - marque 3");
         System.out.println(" - Para buscar un proceso - marque 4");
         System.out.println(" - Para buscar las estadísticas de un tipo de proceso - marque 5");
-        System.out.println(" - Para salir - marque 6");
+        System.out.println(" - Para ver el promedio de procesos por mes - marque 6");
+        System.out.println(" - Para salir - marque 7");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -73,6 +74,9 @@ public class Main {
                 System.out.println("Activos: " + Court.activesTrials(insertedType));
                 break;
             case 6:
+                System.out.println("El promedio de procesos por mes es: " + Court.averageTrials());
+                break;
+            case 7:
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
