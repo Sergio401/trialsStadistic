@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        final int EXIT_OPTION = 3;
+        final int EXIT_OPTION = 4;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -40,13 +40,12 @@ public class Main {
             case 1:
                 Trial trial = ScannerData.askForData();
                 Court.addTrial(trial);
-                //Court.getTrials();
                 break;
             case 2:
-                Court.getAllTrials();
+                System.out.println(Court.getLastTrial());
                 break;
             case 3:
-                System.exit(0);
+                Court.getAllTrials();
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");
