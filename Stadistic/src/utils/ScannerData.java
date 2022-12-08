@@ -6,15 +6,14 @@ import model.TypeTrial;
 import java.util.Scanner;
 
 public class ScannerData {
-
     public static Trial askForData() {
         Scanner scanner = new Scanner(System.in);
-
         System.out.println(" ");
         System.out.println("INGRESO DE PROCESO - SIGA LAS INSTRUCCIONES");
         System.out.println("============================================");
         System.out.println(" ");
 
+        TypeTrial.optionType();
         System.out.print("Ingresar número de proceso: ");
         int idTrial = Integer.parseInt(scanner.nextLine());
 
@@ -50,7 +49,7 @@ public class ScannerData {
         );
     }
 
-    private static Date dateTransform(String date) {
+    public static Date dateTransform(String date) {
         String[] splitDate = date.split("/");
 
         return new Date(
@@ -58,5 +57,11 @@ public class ScannerData {
             Integer.parseInt(splitDate[1]), // Month
             Integer.parseInt(splitDate[2]) // Year
         );
+    }
+
+    public static int askToSearch() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresar número de proceso: ");
+        return Integer.parseInt(scanner.nextLine());
     }
 }

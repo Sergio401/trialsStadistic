@@ -22,5 +22,9 @@ public class Trial {
             + "\nFecha de salida: " + closeDate
             + "\nRazón de salida: " + reason;
     }
+
+    public int getIdTrial(){
+        return idTrial;
+    }
 }
 
