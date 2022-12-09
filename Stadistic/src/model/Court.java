@@ -4,16 +4,28 @@ import java.util.Objects;
 
 public class Court {
     int max = 10;
-    private Trial[] trials = new Trial[max];
+    private final Trial[] trials = new Trial[max];
 
     public void addTrial(Trial trial) {
         boolean isInserted = false;
-        for (int i = 0; i < trials.length && !isInserted; i++){
-            if (trials[i] == null) {
+        boolean isExisted = existingTrial(trial.getIdTrial());
+        for (int i = 0; i < trials.length && !isInserted; i++) {
+            if (trials[i] == null && !isExisted) {
                 trials[i] = trial;
+                isInserted = true;
+            } else if (isExisted) {
+                System.out.println("El proceso ya exíste");
                 isInserted = true;
             }
         }
+    }
+
+    public boolean existingTrial(int idTrial) {
+        Trial trial = searchTrial(idTrial);
+        boolean isExistingTrial;
+
+        isExistingTrial = trial != null;
+        return isExistingTrial;
     }
 
     public Trial[] addActiveTrials() {
@@ -55,13 +67,6 @@ public class Court {
         return actives;
     }*/
 
-    public boolean existingTrial(int idTrial) {
-        Trial trial = searchTrial(idTrial);
-        boolean isExistingTrial;
-
-        isExistingTrial = trial != null;
-        return isExistingTrial;
-    }
 
     public Trial searchTrial(int idTrial) {
         Trial foundTrial = null;
@@ -122,11 +127,4 @@ public class Court {
     }
 }
 
-/*
-for (int i = 0; i < trials.length; i++) {
-    if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() == null) {
-        numberActives++;
-    }
-}
- */
 

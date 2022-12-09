@@ -10,9 +10,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Test {
-    private Court court;
-    private ScannerData scannerData;
-    private ControllerInterface controllerInterface;
+    private final Court court;
+    private final ScannerData scannerData;
+    private final ControllerInterface controllerInterface;
 
     public Test() {
         court = new Court();
@@ -67,13 +67,18 @@ public class Test {
                 System.out.println("============================================");
                 System.out.println(" ");
                 controllerInterface.printOptionsType();
-                Trial trial;
-                trial = scannerData.askForData();
-                court.addTrial(trial);
-                controllerInterface.cleanInterface();
-                System.out.println("PROCESO INGRESADO: ");
-                System.out.println(court.getLastTrial());
-                controllerInterface.nextStep();
+                Trial trial = scannerData.askForData();
+                boolean isExisted = court.existingTrial(trial.getIdTrial());
+                if(!isExisted){
+                    court.addTrial(trial);
+                    controllerInterface.cleanInterface();
+                    System.out.println("PROCESO INGRESADO: ");
+                    System.out.println(court.getLastTrial());
+                    controllerInterface.nextStep();
+                } else {
+                    System.out.println("\nEL PROCESO CON ESE ID YA EXISTE");
+                    controllerInterface.nextStep();
+                }
                 break;
             case 2:
                 System.out.println("==============================");
@@ -82,7 +87,7 @@ public class Test {
                 System.out.println();
                 int idTrial = scannerData.askToSearch();
                 if (court.searchTrial(idTrial) == null) {
-                    System.out.println("El proceso no existe");
+                    System.out.println("\nEl proceso no existe");
                 }
                 else if (court.searchTrial(idTrial) != null){
                     System.out.println(court.searchTrial(idTrial));
