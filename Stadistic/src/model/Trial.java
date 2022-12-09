@@ -6,12 +6,15 @@ public class Trial {
     private final Integer idTrial;
     private final Date arrivalDate, closeDate;
 
-    public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason){
+    private String status;
+
+    public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason, String status){
         this.idTrial = idTrial;
         this.type = type;
         this.arrivalDate = arrivalDate;
         this.closeDate = closeDate;
         this.reason = reason;
+        this.status = status;
     }
 
     public String toString(){
@@ -20,7 +23,8 @@ public class Trial {
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate
-            + "\nRazón de salida: " + reason;
+            + "\nRazón de salida: " + reason
+            + "\nEstado: " + Status();
     }
 
     public int getIdTrial(){
@@ -32,6 +36,14 @@ public class Trial {
     }
     public Date getCloseDate(){
         return closeDate;
+    }
+    public String Status(){
+        if (arrivalDate != null && closeDate == null){
+            status = "Activo";
+        }else {
+            status = "Archivado";
+        }
+        return status;
     }
 }
 
