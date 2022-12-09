@@ -22,5 +22,12 @@ public class ControllerInterface {
             System.exit(0);
         }
     }
+    public static boolean askingClose(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nSi desea ingresar la fecha y razón de la salida marque Si(s)/No(n): ");
+        String userInput = scanner.nextLine();
+
+        return Objects.equals(userInput, "s");
+    }
 
 }

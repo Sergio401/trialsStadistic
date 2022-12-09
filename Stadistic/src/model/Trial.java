@@ -1,34 +1,56 @@
 package model;
 
+import java.util.Objects;
+
 public class Trial {
     private final String type;
-    private final String reason;
-    private final Integer idTrial;
-    private final Date arrivalDate, closeDate;
-
+    private String reason;
+    private final int idTrial;
+    private final Date arrivalDate;
+    private Date closeDate;
     private String status;
 
-    public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason, String status){
+    public Trial(int idTrial, String type, Date arrivalDate){
         this.idTrial = idTrial;
         this.type = type;
         this.arrivalDate = arrivalDate;
-        this.closeDate = closeDate;
-        this.reason = reason;
-        this.status = status;
+        this.status = "Activo";
     }
 
-    public String toString(){
-        return
+    public void setCloseDate(Date closeDate){
+        this.closeDate = closeDate;
+    }
+
+    public void setReason(String reason){
+        this.reason = reason;
+    }
+
+    public String toString() {
+        String printTrial;
+        if (Objects.equals(status, "Activo")) {
+            printTrial =
+            "\nNúmero de proceso: " + idTrial
+            + "\nTipo de contrato: " + type
+            + "\nFecha de entrada: " + arrivalDate
+            + "\nStatus: " + status;
+        } else {
+            printTrial =
             "\nNúmero de proceso: " + idTrial
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate
             + "\nRazón de salida: " + reason
-            + "\nEstado: " + Status();
+            + "\nStatus: " + status;
+        }
+        return printTrial;
     }
 
     public int getIdTrial(){
         return idTrial;
+    }
+
+    public String getStatus(){
+        return status;
     }
 
     public String getType(){
@@ -37,13 +59,9 @@ public class Trial {
     public Date getCloseDate(){
         return closeDate;
     }
-    public String Status(){
-        if (arrivalDate != null && closeDate == null){
-            status = "Activo";
-        }else {
-            status = "Archivado";
-        }
-        return status;
+
+    public void setStatus(String status){
+        this.status = status;
     }
 }
 

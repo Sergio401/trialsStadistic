@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Court {
     private static final Trial[] trials = new Trial[10];
 
-    public static void addTrial(Trial trial) {
+    public void addTrial(Trial trial) {
         boolean isInserted = false;
         for (int i = 0; i < trials.length && !isInserted; i++) {
             if (trials[i] == null) {
@@ -15,7 +15,7 @@ public class Court {
         }
     }
 
-    public static Trial getLastTrial() {
+    public Trial getLastTrial() {
         Trial theLastTrial = null;
         boolean isLastTrial = false;
         for (int i = 0; i < trials.length && !isLastTrial; i++) {
@@ -32,7 +32,7 @@ public class Court {
         return trials;
     }
 
-    public static boolean existingTrial(int idTrial) {
+    public boolean existingTrial(int idTrial) {
         Trial trial = searchTrial(idTrial);
         boolean isExistingTrial;
 
@@ -40,7 +40,7 @@ public class Court {
         return isExistingTrial;
     }
 
-    public static Trial searchTrial(int idTrial) {
+    public Trial searchTrial(int idTrial) {
         Trial foundTrial = null;
         boolean isTheTrial = false;
         for (int i = 0; i < trials.length && !isTheTrial; i++) {
@@ -54,7 +54,7 @@ public class Court {
         return foundTrial;
     }
 
-    public static int arrivalsTrials(String type) {
+    public int arrivalsTrials(String type) {
         int numberArrivals = 0;
         for (Trial trial : trials) {
             if (trial != null &&
@@ -66,7 +66,7 @@ public class Court {
         return numberArrivals;
     }
 
-    public static int closesTrials(String type) {
+    public int closesTrials(String type) {
         int numberCloses = 0;
         for (Trial trial : trials) {
             if (trial != null &&
@@ -78,7 +78,7 @@ public class Court {
         }
         return numberCloses;
     }
-    public static int activesTrials(String type) {
+    public int activesTrials(String type) {
         int numberActives = 0;
         for (Trial trial : trials) {
             if (trial != null &&
@@ -91,7 +91,7 @@ public class Court {
         return numberActives;
     }
 
-    public static int averageTrials(){
+    public int averageTrials(){
         int cont = 0;
         int average = 0;
         for (Trial trial : trials) {

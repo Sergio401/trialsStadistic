@@ -7,11 +7,22 @@ import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
 
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Test {
+    private final Court court;
 
+    public Test() {
+        court = new Court();
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.run();
+    }
+
+    public void run() {
         final int EXIT_OPTION = 7;
         int optionSelected = interfaceUser();
 
@@ -22,7 +33,7 @@ public class Main {
         }
     }
 
-    public static Integer interfaceUser() {
+    public int interfaceUser() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(" ");
@@ -44,15 +55,15 @@ public class Main {
         return scanner.nextInt();
     }
 
-    public static void menuOption(int option) {
+    public void menuOption(int option) {
         switch (option) {
             case 1:
                 ControllerInterface.cleanInterface();
                 Trial trial = ScannerData.askForData();
-                Court.addTrial(trial);
+                court.addTrial(trial);
                 ControllerInterface.cleanInterface();
                 System.out.println("PROCESO INGRESADO: ");
-                System.out.println(Court.getLastTrial());
+                System.out.println(court.getLastTrial());
                 ControllerInterface.nextStep();
                 break;
             case 2:
@@ -61,14 +72,28 @@ public class Main {
                 System.out.println("==============================");
                 System.out.println();
                 int idTrial = ScannerData.askToSearch();
-
-                if (Court.searchTrial(idTrial) == null) {
+                if (court.searchTrial(idTrial) == null) {
                     System.out.println("El proceso no existe");
-                } else {
-                    System.out.println(Court.searchTrial(idTrial));
                 }
-
-                ControllerInterface.nextStep();
+                else if (court.searchTrial(idTrial) != null){
+                    System.out.println(court.searchTrial(idTrial));
+                    if(Objects.equals(court.searchTrial(idTrial).getStatus(), "Activo")){
+                        boolean askingClose = ControllerInterface.askingClose();
+                        if(askingClose){
+                            ScannerData.askToCloseDate(court.searchTrial(idTrial));
+                            ScannerData.askToReason(court.searchTrial(idTrial));
+                            court.searchTrial(idTrial).setStatus("Archivado");
+                            System.out.println(court.searchTrial(idTrial));
+                            ControllerInterface.nextStep();
+                        }
+                        else{
+                            ControllerInterface.nextStep();
+                        }
+                    }
+                    else if (Objects.equals(court.searchTrial(idTrial).getStatus(), "Archivado")){
+                        ControllerInterface.nextStep();
+                    }
+                }
                 break;
             case 3:
                 System.out.println("========================");
@@ -77,9 +102,9 @@ public class Main {
                 System.out.println();
                 TypeTrial.printOptionsType();
                 String insertedType = ScannerData.askToStatistic();
-                System.out.println("Procesos Ingresados: " + Court.arrivalsTrials(insertedType));
-                System.out.println("Procesos Salientes: " + Court.closesTrials(insertedType));
-                System.out.println("Procesos Activos: " + Court.activesTrials(insertedType));
+                System.out.println("Procesos Ingresados: " + court.arrivalsTrials(insertedType));
+                System.out.println("Procesos Salientes: " + court.closesTrials(insertedType));
+                System.out.println("Procesos Activos: " + court.activesTrials(insertedType));
                 ControllerInterface.nextStep();
                 break;
             case 4:
@@ -87,7 +112,7 @@ public class Main {
                 System.out.println("POMEDIO DE PROCESOS X MES");
                 System.out.println("=========================");
                 System.out.println();
-                System.out.println("El promedio de procesos por mes es: " + Court.averageTrials());
+                System.out.println("El promedio de procesos por mes es: " + court.averageTrials());
                 ControllerInterface.nextStep();
                 break;
             case 5:
