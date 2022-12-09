@@ -117,8 +117,10 @@ public class Test {
                 System.out.println("=========================");
                 System.out.println("POMEDIO DE PROCESOS X MES");
                 System.out.println("=========================");
+                int monthToSearch = ScannerData.askMonth();
+                System.out.println("Tus procesos del mes " + monthToSearch);
                 System.out.println();
-                System.out.println("El promedio de procesos por mes es: " + court.averageTrials());
+                PrintData.printTrials(court.getTrialsByMonth(monthToSearch));
                 ControllerInterface.nextStep();
                 break;
             case 5:
@@ -126,7 +128,7 @@ public class Test {
                 System.out.println("lISTA DE PROCESOS");
                 System.out.println("==================");
                 System.out.println();
-                PrintData.printTrials(Court.getAllTrials());
+                PrintData.printTrials(court.getAllTrials());
                 ControllerInterface.nextStep();
                 break;
             case 6:
@@ -135,7 +137,7 @@ public class Test {
                 System.out.println("======================");
                 System.out.println();
                 System.out.println("La lista de sus procesos fue guardada en el archivo trials.txt");
-                PrintData.printTrialsFile(Court.getAllTrials());
+                PrintData.printTrialsFile(court.getAllTrials());
                 ControllerInterface.nextStep();
                 break;
             case 7:

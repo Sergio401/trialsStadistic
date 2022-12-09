@@ -21,7 +21,6 @@ public class PrintData {
     }
 
     public static void printTrials(Trial[] trials) {
-        // int i=0; i<trials.length; i++
         for (Trial trial : trials) {
             if (trial != null) {
                 System.out.println(trial);

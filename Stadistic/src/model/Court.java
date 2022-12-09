@@ -40,7 +40,7 @@ public class Court {
         return theLastTrial;
     }
 
-    public static Trial[] getAllTrials() {
+    public Trial[] getAllTrials() {
         return trials;
     }
 
@@ -95,16 +95,16 @@ public class Court {
         return numberActives;
     }
 
-    public int averageTrials(){
-        int cont = 0;
-        int average = 0;
-        for (Trial trial : trials) {
-            if (trial != null){
-            cont++;
-            }
-            average = cont / 3;
+    public Trial[] getTrialsByMonth(int month) {
+        Trial[] trialsByMonth = new Trial[10];
+        for (int i = 0; i < trials.length; i++) {
+            String[] stringDate = trials[i].getStartDate().toString().split("/");
+            int monthToCompare = Integer.parseInt(stringDate[1]);
+                if(monthToCompare == month){
+                    trialsByMonth[i] = trials[i];
+                }
         }
-        return average;
+        return trialsByMonth;
     }
 }
 
