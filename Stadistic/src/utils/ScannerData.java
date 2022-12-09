@@ -1,25 +1,19 @@
 package utils;
 
+import model.Court;
 import model.Trial;
 import model.Date;
-import model.TypeTrial;
-
+/*import model.TypeTrial;*/
 import java.util.Scanner;
 
 public class ScannerData {
-    public static Trial askForData() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println(" ");
-        System.out.println("INGRESO DE PROCESO - SIGA LAS INSTRUCCIONES");
-        System.out.println("============================================");
-        System.out.println(" ");
 
-        TypeTrial.printOptionsType();
+    public Trial askForData() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("TIPO DE PROCESO - Ingresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
-        String type = TypeTrial.assignType(option);
+        String type = Trial.assignType(option);
 
         System.out.print("NÚMERO DE PROCESO - Ingresar número de proceso: ");
         int idTrial = Integer.parseInt(scanner.nextLine());
@@ -32,7 +26,7 @@ public class ScannerData {
 
 
 
-    private static Trial createNewTrial(
+    private Trial createNewTrial(
             int idTrial,
             String type,
             String dateIncome
@@ -43,7 +37,7 @@ public class ScannerData {
                 dateTransform(dateIncome)
         );
     }
-    public static void askToCloseDate(Trial trial){
+    public void askToCloseDate(Trial trial){
         Scanner scanner = new Scanner(System.in);
         System.out.print("FECHA DE SALIDA - Ingresar fecha de salida (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();
@@ -51,14 +45,14 @@ public class ScannerData {
         trial.setCloseDate(closeDate);
     }
 
-    public static void askToReason(Trial trial){
+    public void askToReason(Trial trial){
         Scanner scanner = new Scanner(System.in);
         System.out.print("RAZON DE SALIDA - Ingresar la razón de salida: ");
         String reason = scanner.nextLine();
         trial.setReason(reason);
     }
 
-    public static Date dateTransform(String date) {
+    public Date dateTransform(String date) {
         String[] splitDate = date.split("/");
 
         return new Date(
@@ -68,16 +62,16 @@ public class ScannerData {
         );
     }
 
-    public static int askToSearch() {
+    public int askToSearch() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingresar número de proceso: ");
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String askToStatistic() {
+    public int askToStatistic() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingresar el TIPO del proceso por el que desea buscar: ");
         int option = Integer.parseInt(scanner.nextLine());
-        return TypeTrial.assignType(option);
+        return option;
     }
 }

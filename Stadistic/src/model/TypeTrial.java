@@ -1,6 +1,6 @@
 package model;
 
-public class TypeTrial {
+/*public class TypeTrial {
 
     private static String type;
 
@@ -58,4 +58,6 @@ public class TypeTrial {
                 + "\n");
     }
 }
+
+ */
 
