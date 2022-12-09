@@ -31,7 +31,9 @@ public class ScannerData {
         System.out.print("RAZÓN DE SALIDA - ingresar descripción de salida: ");
         String reason = scanner.nextLine();
 
-        return createNewTrial(idTrial, type, dateIncome, dateOutcome, reason);
+        String status = "Activo";
+
+        return createNewTrial(idTrial, type, dateIncome, dateOutcome, reason,status);
     }
 
     private static Trial createNewTrial(
@@ -39,14 +41,16 @@ public class ScannerData {
             String type,
             String dateIncome,
             String dateOutcome,
-            String reason
+            String reason,
+            String status
     ) {
         return new Trial(
                 idTrial,
                 type,
                 dateTransform(dateIncome),
                 dateTransform(dateOutcome),
-                reason
+                reason,
+                status
         );
     }
 
