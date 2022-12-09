@@ -48,7 +48,7 @@ public class Test {
         System.out.println(" - Para ingresar proceso - marque 1");
         System.out.println(" - Para buscar un proceso - marque 2");
         System.out.println(" - Para buscar las estadísticas de un tipo de proceso - marque 3");
-        System.out.println(" - Para ver el promedio de procesos por mes - marque 4");
+        System.out.println(" - Para ver los procesos ingresados por mes - marque 4");
         System.out.println(" - Para mostrar todos los procesos - marque 5");
         System.out.println(" - Para imprimir procesos - marque 6");
         System.out.println(" - Para salir - marque 7");
@@ -125,8 +125,11 @@ public class Test {
                 System.out.println("=========================");
                 System.out.println("POMEDIO DE PROCESOS X MES");
                 System.out.println("=========================");
+                int monthToSearch = scannerData.askMonth();
+                System.out.println("Tus procesos del mes " + monthToSearch);
                 System.out.println();
-                System.out.println("El promedio de procesos por mes es: " + court.averageTrials());
+                PrintData.printTrials(court.getTrialsByMonth(monthToSearch));
+                court.deleteTrialsByMonth();
                 controllerInterface.nextStep();
                 break;
             case 5:
@@ -134,7 +137,7 @@ public class Test {
                 System.out.println("lISTA DE PROCESOS");
                 System.out.println("==================");
                 System.out.println();
-                PrintData.printTrials(court.addActiveTrials());
+                PrintData.printTrials(court.getAllTrials());
                 controllerInterface.nextStep();
                 break;
             case 6:

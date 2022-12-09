@@ -64,6 +64,12 @@ public class ScannerData {
         return Integer.parseInt(scanner.nextLine());
     }
 
+    public int askMonth() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresar número de mes: ");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
     public int askToStatistic() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingresar el TIPO del proceso por el que desea buscar: ");

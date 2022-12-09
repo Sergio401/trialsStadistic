@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Court {
     int max = 10;
     private final Trial[] trials = new Trial[max];
+    private final Trial[] trialsByMonth = new Trial[max];
 
     public void addTrial(Trial trial) {
         boolean isInserted = false;
@@ -30,7 +32,6 @@ public class Court {
 
     public Trial[] addActiveTrials() {
         Trial[] actives = new Trial [max];
-
         for (Trial trial : trials) {
             if (Objects.equals(trial.getStatus(), "Activo")) {
                 boolean isInserted = false;
@@ -61,12 +62,6 @@ public class Court {
     public Trial[] getAllTrials() {
         return trials;
     }
-
-    /*public Trial[] getActiveTrials(){
-        addActiveTrials();
-        return actives;
-    }*/
-
 
     public Trial searchTrial(int idTrial) {
         Trial foundTrial = null;
@@ -114,16 +109,24 @@ public class Court {
         return numberActives;
     }
 
-    public int averageTrials(){
-        int cont = 0;
-        int average = 0;
-        for (Trial trial : trials) {
-            if (trial != null){
-            cont++;
+    public Trial[] getTrialsByMonth(int month) {
+        boolean isComplete = false;
+        for (int i = 0; i < trials.length && !isComplete; i++) {
+            if(trials[i] != null){
+                String[] stringDate = trials[i].getStartDate().toString().split("/");
+                int monthToCompare = Integer.parseInt(stringDate[1]);
+                if(monthToCompare == month){
+                    trialsByMonth[i] = trials[i];
+                }
+            } else {
+                isComplete = true;
             }
-            average = cont / 3;
         }
-        return average;
+        return trialsByMonth;
+    }
+
+    public void deleteTrialsByMonth(){
+        Arrays.fill(trialsByMonth, null);;
     }
 }
 
