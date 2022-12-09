@@ -5,14 +5,27 @@ import java.util.Objects;
 public class Court {
     private static final Trial[] trials = new Trial[10];
 
-    public void addTrial(Trial trial) {
+    public boolean addTrial(Trial trial) {
         boolean isInserted = false;
+        boolean isExisted = existingTrial(trial.getIdTrial());
         for (int i = 0; i < trials.length && !isInserted; i++) {
-            if (trials[i] == null) {
+            if (trials[i] == null && !isExisted) {
                 trials[i] = trial;
+                isInserted = true;
+            } else if (isExisted) {
+                System.out.println("El proceso ya exíste");
                 isInserted = true;
             }
         }
+        return isExisted;
+    }
+
+    public boolean existingTrial(int idTrial) {
+        Trial trial = searchTrial(idTrial);
+        boolean isExistingTrial;
+
+        isExistingTrial = trial != null;
+        return isExistingTrial;
     }
 
     public Trial getLastTrial() {
@@ -30,14 +43,6 @@ public class Court {
 
     public static Trial[] getAllTrials() {
         return trials;
-    }
-
-    public boolean existingTrial(int idTrial) {
-        Trial trial = searchTrial(idTrial);
-        boolean isExistingTrial;
-
-        isExistingTrial = trial != null;
-        return isExistingTrial;
     }
 
     public Trial searchTrial(int idTrial) {
@@ -104,11 +109,4 @@ public class Court {
     }
 }
 
-/*
-for (int i = 0; i < trials.length; i++) {
-    if (trials[i] != null && trials[i].getType() == type && trials[i].getCloseDate() == null) {
-        numberActives++;
-    }
-}
- */
 

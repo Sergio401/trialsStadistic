@@ -60,11 +60,17 @@ public class Test {
             case 1:
                 ControllerInterface.cleanInterface();
                 Trial trial = ScannerData.askForData();
-                court.addTrial(trial);
-                ControllerInterface.cleanInterface();
-                System.out.println("PROCESO INGRESADO: ");
-                System.out.println(court.getLastTrial());
-                ControllerInterface.nextStep();
+                boolean isExisted = court.existingTrial(trial.getIdTrial());
+                if(!isExisted){
+                    court.addTrial(trial);
+                    ControllerInterface.cleanInterface();
+                    System.out.println("PROCESO INGRESADO: ");
+                    System.out.println(court.getLastTrial());
+                    ControllerInterface.nextStep();
+                } else {
+                    System.out.println("\nEL PROCESO CON ESE ID YA EXISTE");
+                    ControllerInterface.nextStep();
+                }
                 break;
             case 2:
                 System.out.println("==============================");
@@ -73,7 +79,7 @@ public class Test {
                 System.out.println();
                 int idTrial = ScannerData.askToSearch();
                 if (court.searchTrial(idTrial) == null) {
-                    System.out.println("El proceso no existe");
+                    System.out.println("\nEl proceso no existe");
                 }
                 else if (court.searchTrial(idTrial) != null){
                     System.out.println(court.searchTrial(idTrial));
