@@ -61,7 +61,13 @@ public class Main {
                 System.out.println("==============================");
                 System.out.println();
                 int idTrial = ScannerData.askToSearch();
-                System.out.println(Court.searchTrial(idTrial));
+
+                if (Court.searchTrial(idTrial) == null) {
+                    System.out.println("El proceso no existe");
+                } else {
+                    System.out.println(Court.searchTrial(idTrial));
+                }
+
                 ControllerInterface.nextStep();
                 break;
             case 3:

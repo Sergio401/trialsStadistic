@@ -32,11 +32,21 @@ public class Court {
         return trials;
     }
 
+    public static boolean existingTrial(int idTrial) {
+        Trial trial = searchTrial(idTrial);
+        boolean isExistingTrial;
+
+        isExistingTrial = trial != null;
+        return isExistingTrial;
+    }
+
     public static Trial searchTrial(int idTrial) {
         Trial foundTrial = null;
         boolean isTheTrial = false;
         for (int i = 0; i < trials.length && !isTheTrial; i++) {
-            if (trials[i].getIdTrial() == idTrial) {
+            if (trials[i] == null) {
+                isTheTrial = true;
+            } else if (trials[i].getIdTrial() == idTrial) {
                 foundTrial = trials[i];
                 isTheTrial = true;
             }
