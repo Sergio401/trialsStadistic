@@ -2,7 +2,6 @@ package test;
 
 import model.Court;
 import model.Trial;
-import model.TypeTrial;
 import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
@@ -12,9 +11,13 @@ import java.util.Scanner;
 
 public class Test {
     private final Court court;
+    private final ScannerData scannerData;
+    private final ControllerInterface controllerInterface;
 
     public Test() {
         court = new Court();
+        scannerData = new ScannerData();
+        controllerInterface = new ControllerInterface();
     }
 
     public static void main(String[] args) {
@@ -29,7 +32,7 @@ public class Test {
         while (optionSelected != EXIT_OPTION) {
             menuOption(optionSelected);
             optionSelected = interfaceUser();
-            ControllerInterface.cleanInterface();
+            controllerInterface.cleanInterface();
         }
     }
 
@@ -58,18 +61,23 @@ public class Test {
     public void menuOption(int option) {
         switch (option) {
             case 1:
-                ControllerInterface.cleanInterface();
-                Trial trial = ScannerData.askForData();
+                controllerInterface.cleanInterface();
+                System.out.println(" ");
+                System.out.println("INGRESO DE PROCESO - SIGA LAS INSTRUCCIONES");
+                System.out.println("============================================");
+                System.out.println(" ");
+                controllerInterface.printOptionsType();
+                Trial trial = scannerData.askForData();
                 boolean isExisted = court.existingTrial(trial.getIdTrial());
                 if(!isExisted){
                     court.addTrial(trial);
-                    ControllerInterface.cleanInterface();
+                    controllerInterface.cleanInterface();
                     System.out.println("PROCESO INGRESADO: ");
                     System.out.println(court.getLastTrial());
-                    ControllerInterface.nextStep();
+                    controllerInterface.nextStep();
                 } else {
                     System.out.println("\nEL PROCESO CON ESE ID YA EXISTE");
-                    ControllerInterface.nextStep();
+                    controllerInterface.nextStep();
                 }
                 break;
             case 2:
@@ -77,27 +85,27 @@ public class Test {
                 System.out.println("BÚSQUEDA POR NÚMERO DE PROCESO:");
                 System.out.println("==============================");
                 System.out.println();
-                int idTrial = ScannerData.askToSearch();
+                int idTrial = scannerData.askToSearch();
                 if (court.searchTrial(idTrial) == null) {
                     System.out.println("\nEl proceso no existe");
                 }
                 else if (court.searchTrial(idTrial) != null){
                     System.out.println(court.searchTrial(idTrial));
                     if(Objects.equals(court.searchTrial(idTrial).getStatus(), "Activo")){
-                        boolean askingClose = ControllerInterface.askingClose();
+                        boolean askingClose = controllerInterface.askingClose();
                         if(askingClose){
-                            ScannerData.askToCloseDate(court.searchTrial(idTrial));
-                            ScannerData.askToReason(court.searchTrial(idTrial));
+                            scannerData.askToCloseDate(court.searchTrial(idTrial));
+                            scannerData.askToReason(court.searchTrial(idTrial));
                             court.searchTrial(idTrial).setStatus("Archivado");
                             System.out.println(court.searchTrial(idTrial));
-                            ControllerInterface.nextStep();
+                            controllerInterface.nextStep();
                         }
                         else{
-                            ControllerInterface.nextStep();
+                            controllerInterface.nextStep();
                         }
                     }
                     else if (Objects.equals(court.searchTrial(idTrial).getStatus(), "Archivado")){
-                        ControllerInterface.nextStep();
+                        controllerInterface.nextStep();
                     }
                 }
                 break;
@@ -106,12 +114,12 @@ public class Test {
                 System.out.println("ESTADÍSTICAS DE PROCESO");
                 System.out.println("========================");
                 System.out.println();
-                TypeTrial.printOptionsType();
-                String insertedType = ScannerData.askToStatistic();
+                controllerInterface.printOptionsType();
+                String insertedType = Trial.assignType(scannerData.askToStatistic());
                 System.out.println("Procesos Ingresados: " + court.arrivalsTrials(insertedType));
                 System.out.println("Procesos Salientes: " + court.closesTrials(insertedType));
                 System.out.println("Procesos Activos: " + court.activesTrials(insertedType));
-                ControllerInterface.nextStep();
+                controllerInterface.nextStep();
                 break;
             case 4:
                 System.out.println("=========================");
@@ -119,15 +127,15 @@ public class Test {
                 System.out.println("=========================");
                 System.out.println();
                 System.out.println("El promedio de procesos por mes es: " + court.averageTrials());
-                ControllerInterface.nextStep();
+                controllerInterface.nextStep();
                 break;
             case 5:
                 System.out.println("==================");
                 System.out.println("lISTA DE PROCESOS");
                 System.out.println("==================");
                 System.out.println();
-                PrintData.printTrials(Court.getAllTrials());
-                ControllerInterface.nextStep();
+                PrintData.printTrials(court.addActiveTrials());
+                controllerInterface.nextStep();
                 break;
             case 6:
                 System.out.println("======================");
@@ -135,8 +143,8 @@ public class Test {
                 System.out.println("======================");
                 System.out.println();
                 System.out.println("La lista de sus procesos fue guardada en el archivo trials.txt");
-                PrintData.printTrialsFile(Court.getAllTrials());
-                ControllerInterface.nextStep();
+                PrintData.printTrialsFile(court.getAllTrials());
+                controllerInterface.nextStep();
                 break;
             case 7:
                 break;

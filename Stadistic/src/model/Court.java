@@ -3,7 +3,8 @@ package model;
 import java.util.Objects;
 
 public class Court {
-    private static final Trial[] trials = new Trial[10];
+    int max = 10;
+    private final Trial[] trials = new Trial[max];
 
     public void addTrial(Trial trial) {
         boolean isInserted = false;
@@ -27,6 +28,23 @@ public class Court {
         return isExistingTrial;
     }
 
+    public Trial[] addActiveTrials() {
+        Trial[] actives = new Trial [max];
+
+        for (Trial trial : trials) {
+            if (Objects.equals(trial.getStatus(), "Activo")) {
+                boolean isInserted = false;
+                for (int a = 0; a < actives.length && !isInserted; a++) {
+                    if (actives[a] == null) {
+                        actives[a] = trial;
+                        isInserted = true;
+                    }
+                }
+            }
+        }
+        return actives;
+    }
+
     public Trial getLastTrial() {
         Trial theLastTrial = null;
         boolean isLastTrial = false;
@@ -40,9 +58,15 @@ public class Court {
         return theLastTrial;
     }
 
-    public static Trial[] getAllTrials() {
+    public Trial[] getAllTrials() {
         return trials;
     }
+
+    /*public Trial[] getActiveTrials(){
+        addActiveTrials();
+        return actives;
+    }*/
+
 
     public Trial searchTrial(int idTrial) {
         Trial foundTrial = null;
@@ -61,8 +85,7 @@ public class Court {
     public int arrivalsTrials(String type) {
         int numberArrivals = 0;
         for (Trial trial : trials) {
-            if (trial != null &&
-                Objects.equals(trial.getType(), type))
+            if (trial != null && trial.getType().equals(type))
             {
                 numberArrivals++;
             }
@@ -73,9 +96,7 @@ public class Court {
     public int closesTrials(String type) {
         int numberCloses = 0;
         for (Trial trial : trials) {
-            if (trial != null &&
-                Objects.equals(trial.getType(), type) &&
-                trial.getCloseDate() != null)
+            if (trial.getStatus().equals("Archivado") && trial.getType().equals(type))
             {
                 numberCloses++;
             }
@@ -85,9 +106,7 @@ public class Court {
     public int activesTrials(String type) {
         int numberActives = 0;
         for (Trial trial : trials) {
-            if (trial != null &&
-                Objects.equals(trial.getType(), type) &&
-                trial.getCloseDate() == null)
+            if (Objects.equals(trial.getStatus(), "Activo") && Objects.equals(trial.getType(), type))
             {
                 numberActives++;
             }
