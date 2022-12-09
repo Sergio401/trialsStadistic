@@ -2,15 +2,23 @@ package model;
 
 public class Trial {
     private final String type;
-    private final String reason;
-    private final Integer idTrial;
-    private final Date arrivalDate, closeDate;
+    private String reason;
+    private final int idTrial;
+    private final Date arrivalDate;
+    private Date closeDate;
+    private String status;
 
-    public Trial(Integer idTrial, String type, Date arrivalDate, Date closeDate, String reason){
+    public Trial(int idTrial, String type, Date arrivalDate){
         this.idTrial = idTrial;
         this.type = type;
         this.arrivalDate = arrivalDate;
+    }
+
+    public void setCloseDate(Date closeDate){
         this.closeDate = closeDate;
+    }
+
+    public void setReason(String reason){
         this.reason = reason;
     }
 
@@ -20,7 +28,8 @@ public class Trial {
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate
-            + "\nRazón de salida: " + reason;
+            + "\nRazón de salida: " + reason
+            + "\nStatus: " + Status() ;
     }
 
     public int getIdTrial(){
@@ -32,6 +41,15 @@ public class Trial {
     }
     public Date getCloseDate(){
         return closeDate;
+    }
+
+    public String Status(){
+        if (arrivalDate != null && closeDate == null){
+            status = "Activo";
+        }else {
+            status = "Archivado";
+        }
+        return status;
     }
 }
 
