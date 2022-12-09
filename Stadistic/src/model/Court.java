@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Court {
     private static final Trial[] trials = new Trial[10];
 
-    public boolean addTrial(Trial trial) {
+    public void addTrial(Trial trial) {
         boolean isInserted = false;
         boolean isExisted = existingTrial(trial.getIdTrial());
         for (int i = 0; i < trials.length && !isInserted; i++) {
@@ -17,7 +17,6 @@ public class Court {
                 isInserted = true;
             }
         }
-        return isExisted;
     }
 
     public boolean existingTrial(int idTrial) {

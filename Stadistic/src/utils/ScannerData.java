@@ -7,6 +7,7 @@ import model.TypeTrial;
 import java.util.Scanner;
 
 public class ScannerData {
+
     public static Trial askForData() {
         Scanner scanner = new Scanner(System.in);
         
@@ -29,8 +30,6 @@ public class ScannerData {
 
         return createNewTrial(idTrial, type, dateIncome);
     }
-
-
 
     private static Trial createNewTrial(
             int idTrial,

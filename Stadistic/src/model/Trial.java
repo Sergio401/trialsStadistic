@@ -48,18 +48,18 @@ public class Trial {
     public int getIdTrial(){
         return idTrial;
     }
-
     public String getStatus(){
         return status;
     }
-
     public String getType(){
         return type;
     }
     public Date getCloseDate(){
         return closeDate;
     }
-
+    public Date getStartDate(){
+        return arrivalDate;
+    }
     public void setStatus(String status){
         this.status = status;
     }

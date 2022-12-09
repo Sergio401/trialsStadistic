@@ -29,5 +29,4 @@ public class ControllerInterface {
 
         return Objects.equals(userInput, "s");
     }
-
 }
