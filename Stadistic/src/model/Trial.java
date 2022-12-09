@@ -63,7 +63,7 @@ public class Trial {
             }
             return type;
         }
-        
+
 
         public String toString() {
             String printTrial;
