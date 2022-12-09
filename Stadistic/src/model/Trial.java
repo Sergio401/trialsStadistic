@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Trial {
     private final String type;
     private String reason;
@@ -12,6 +14,7 @@ public class Trial {
         this.idTrial = idTrial;
         this.type = type;
         this.arrivalDate = arrivalDate;
+        this.status = "Activo";
     }
 
     public void setCloseDate(Date closeDate){
@@ -22,14 +25,24 @@ public class Trial {
         this.reason = reason;
     }
 
-    public String toString(){
-        return
+    public String toString() {
+        String printTrial;
+        if (Objects.equals(status, "Activo")) {
+            printTrial =
+            "\nNúmero de proceso: " + idTrial
+            + "\nTipo de contrato: " + type
+            + "\nFecha de entrada: " + arrivalDate
+            + "\nStatus: " + status;
+        } else {
+            printTrial =
             "\nNúmero de proceso: " + idTrial
             + "\nTipo de contrato: " + type
             + "\nFecha de entrada: " + arrivalDate
             + "\nFecha de salida: " + closeDate
             + "\nRazón de salida: " + reason
-            + "\nStatus: " + Status() ;
+            + "\nStatus: " + status;
+        }
+        return printTrial;
     }
 
     public int getIdTrial(){
@@ -43,13 +56,9 @@ public class Trial {
         return closeDate;
     }
 
-    public String Status(){
-        if (arrivalDate != null && closeDate == null){
-            status = "Activo";
-        }else {
-            status = "Archivado";
-        }
-        return status;
+    public void setStatus(String status){
+        this.status = status;
     }
+
 }
 

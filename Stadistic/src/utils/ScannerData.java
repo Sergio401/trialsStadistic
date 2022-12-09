@@ -27,6 +27,7 @@ public class ScannerData {
         System.out.print("FECHA DE ENTRADA - Ingresar fecha de entrada (DD/MM/AAAA): ");
         String dateIncome = scanner.nextLine();
 
+
         return createNewTrial(idTrial, type, dateIncome);
     }
 

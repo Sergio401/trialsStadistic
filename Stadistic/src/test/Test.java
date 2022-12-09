@@ -21,11 +21,6 @@ public class Test {
         test.run();
     }
 
-    public void readData() {
-        Trial trial = ScannerData.askForData();
-        court.addTrial(trial);
-    }
-
     public void run() {
         final int EXIT_OPTION = 7;
         int optionSelected = interfaceUser();
@@ -76,10 +71,16 @@ public class Test {
                 System.out.println("==============================");
                 System.out.println();
                 int idTrial = ScannerData.askToSearch();
-                ScannerData.askToCloseDate(court.searchTrial(idTrial));
-                ScannerData.askToReason(court.searchTrial(idTrial));
                 System.out.println(court.searchTrial(idTrial));
-                ControllerInterface.nextStep();
+                if (ControllerInterface.askingClose()){
+                    ScannerData.askToCloseDate(court.searchTrial(idTrial));
+                    ScannerData.askToReason(court.searchTrial(idTrial));
+                    court.searchTrial(idTrial).setStatus("Archivado");
+                    System.out.println(court.searchTrial(idTrial));
+                    ControllerInterface.nextStep();
+                } else {
+                    ControllerInterface.nextStep();
+                }
                 break;
             case 3:
                 System.out.println("========================");
