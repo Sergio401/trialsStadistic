@@ -2,6 +2,8 @@ package utils;
 
 import model.Trial;
 import model.Date;
+import model.Type;
+
 import java.util.Scanner;
 
 public class ScannerData {
@@ -11,7 +13,7 @@ public class ScannerData {
 
         System.out.print("TIPO DE PROCESO - Ingresar tipo de proceso: ");
         int option = Integer.parseInt(scanner.nextLine());
-        String type = Trial.assignType(option);
+        String type = Type.assignType(option);
 
         System.out.print("NÚMERO DE PROCESO - Ingresar número de proceso: ");
         int idTrial = Integer.parseInt(scanner.nextLine());

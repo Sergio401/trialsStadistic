@@ -2,6 +2,7 @@ package test;
 
 import model.Court;
 import model.Trial;
+import model.Type;
 import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
@@ -26,7 +27,7 @@ public class Test {
     }
 
     public void run() {
-        final int EXIT_OPTION = 7;
+        final int EXIT_OPTION = 9;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -35,6 +36,7 @@ public class Test {
             controllerInterface.cleanInterface();
         }
     }
+
 
     public int interfaceUser() {
         Scanner scanner = new Scanner(System.in);
@@ -49,9 +51,10 @@ public class Test {
         System.out.println(" - Para buscar un proceso - marque 2");
         System.out.println(" - Para buscar las estadísticas de un tipo de proceso - marque 3");
         System.out.println(" - Para ver los procesos ingresados por mes - marque 4");
-        System.out.println(" - Para mostrar todos los procesos - marque 5");
-        System.out.println(" - Para imprimir procesos - marque 6");
-        System.out.println(" - Para salir - marque 7");
+        System.out.println(" - Para mostrar los procesos activos - marque 5");
+        System.out.println(" - Para mostrar los procesos archivados - marque 6");
+        System.out.println(" - Para imprimir los procesos - marque 7");
+        System.out.println(" - Para salir - marque 8");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -68,7 +71,8 @@ public class Test {
                 System.out.println(" ");
                 controllerInterface.printOptionsType();
                 Trial trial = scannerData.askForData();
-                boolean isExisted = court.existingTrial(trial.getIdTrial());
+                System.out.println(court.getLastTrial());
+               boolean isExisted = court.existingTrial(trial.getIdTrial());
                 if(!isExisted){
                     court.addTrial(trial);
                     controllerInterface.cleanInterface();
@@ -110,12 +114,13 @@ public class Test {
                 }
                 break;
             case 3:
+
                 System.out.println("========================");
                 System.out.println("ESTADÍSTICAS DE PROCESO");
                 System.out.println("========================");
                 System.out.println();
                 controllerInterface.printOptionsType();
-                String insertedType = Trial.assignType(scannerData.askToStatistic());
+                String insertedType = Type.assignType(scannerData.askToStatistic());
                 System.out.println("Procesos Ingresados: " + court.arrivalsTrials(insertedType));
                 System.out.println("Procesos Salientes: " + court.closesTrials(insertedType));
                 System.out.println("Procesos Activos: " + court.activesTrials(insertedType));
@@ -134,13 +139,23 @@ public class Test {
                 break;
             case 5:
                 System.out.println("==================");
-                System.out.println("lISTA DE PROCESOS");
+                System.out.println("lISTA DE PROCESOS ACTIVOS");
                 System.out.println("==================");
                 System.out.println();
-                PrintData.printTrials(court.getAllTrials());
+                PrintData.printTrials(court.getTrialsByStatus("Activo"));
+                court.deleteTrialsByStatus();
                 controllerInterface.nextStep();
                 break;
             case 6:
+                System.out.println("==================");
+                System.out.println("lISTA DE PROCESOS ARCHIVADOS");
+                System.out.println("==================");
+                System.out.println();
+                PrintData.printTrials(court.getTrialsByStatus("Archivado"));
+                court.deleteTrialsByStatus();
+                controllerInterface.nextStep();
+                break;
+            case 7:
                 System.out.println("======================");
                 System.out.println("IMPRESIÓN DE PROCESOS");
                 System.out.println("======================");
@@ -149,7 +164,9 @@ public class Test {
                 PrintData.printTrialsFile(court.getAllTrials());
                 controllerInterface.nextStep();
                 break;
-            case 7:
+            case 8:
+                PrintData.printTrials(court.getAllTrials());
+                controllerInterface.nextStep();
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");

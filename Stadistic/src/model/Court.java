@@ -7,12 +7,13 @@ public class Court {
     int max = 10;
     private final Trial[] trials = new Trial[max];
     private final Trial[] trialsByMonth = new Trial[max];
+    private final Trial[] trialsByStatus = new Trial[max];
 
     public void addTrial(Trial trial) {
-        boolean isInserted = false;
-        boolean isExisted = existingTrial(trial.getIdTrial());
-        for (int i = 0; i < trials.length && !isInserted; i++) {
-            if (trials[i] == null && !isExisted) {
+       boolean isInserted = false;
+       boolean isExisted = existingTrial(trial.getIdTrial());
+        for (int i = 0; i < trials.length && !isInserted; i++){
+            if (trials[i] == null) {
                 trials[i] = trial;
                 isInserted = true;
             } else if (isExisted) {
@@ -30,20 +31,16 @@ public class Court {
         return isExistingTrial;
     }
 
-    public Trial[] addActiveTrials() {
-        Trial[] actives = new Trial [max];
-        for (Trial trial : trials) {
-            if (Objects.equals(trial.getStatus(), "Activo")) {
-                boolean isInserted = false;
-                for (int a = 0; a < actives.length && !isInserted; a++) {
-                    if (actives[a] == null) {
-                        actives[a] = trial;
-                        isInserted = true;
-                    }
-                }
+    public Trial[] getTrialsByStatus(String status) {
+        boolean isComplete = false;
+        for (int i = 0; i < trials.length && !isComplete; i++) {
+            if (trials[i] != null && trials[i].getStatus().equals(status)) {
+                trialsByStatus[i] = trials[i];
+            } else{
+                isComplete = true;
             }
         }
-        return actives;
+        return trialsByStatus;
     }
 
     public Trial getLastTrial() {
@@ -126,7 +123,11 @@ public class Court {
     }
 
     public void deleteTrialsByMonth(){
-        Arrays.fill(trialsByMonth, null);;
+        Arrays.fill(trialsByMonth, null);
+    }
+
+    public void deleteTrialsByStatus(){
+        Arrays.fill(trialsByStatus, null);
     }
 }
 
