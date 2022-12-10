@@ -2,6 +2,7 @@ package test;
 
 import model.Court;
 import model.Trial;
+import model.Type;
 import utils.ControllerInterface;
 import utils.ScannerData;
 import utils.PrintData;
@@ -115,7 +116,7 @@ public class Test {
                 System.out.println("========================");
                 System.out.println();
                 controllerInterface.printOptionsType();
-                String insertedType = Trial.assignType(scannerData.askToStatistic());
+                String insertedType = Type.assignType(scannerData.askToStatistic());
                 System.out.println("Procesos Ingresados: " + court.arrivalsTrials(insertedType));
                 System.out.println("Procesos Salientes: " + court.closesTrials(insertedType));
                 System.out.println("Procesos Activos: " + court.activesTrials(insertedType));

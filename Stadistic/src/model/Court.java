@@ -98,6 +98,7 @@ public class Court {
         }
         return numberCloses;
     }
+
     public int activesTrials(String type) {
         int numberActives = 0;
         for (Trial trial : trials) {
