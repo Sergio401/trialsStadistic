@@ -27,7 +27,7 @@ public class Test {
     }
 
     public void run() {
-        final int EXIT_OPTION = 7;
+        final int EXIT_OPTION = 8;
         int optionSelected = interfaceUser();
 
         while (optionSelected != EXIT_OPTION) {
@@ -47,12 +47,13 @@ public class Test {
         System.out.println(" ");
         System.out.println("Por favor ingrese la opción que quiere usar: ");
         System.out.println(" - Para ingresar proceso - marque 1");
-        System.out.println(" - Para buscar un proceso - marque 2");
+        System.out.println(" - Para buscar un proceso y/o ingresar la salida - marque 2");
         System.out.println(" - Para buscar las estadísticas de un tipo de proceso - marque 3");
         System.out.println(" - Para ver los procesos ingresados por mes - marque 4");
-        System.out.println(" - Para mostrar todos los procesos - marque 5");
-        System.out.println(" - Para imprimir procesos - marque 6");
-        System.out.println(" - Para salir - marque 7");
+        System.out.println(" - Para mostrar todos los procesos activos - marque 5");
+        System.out.println(" - Para mostrar todos los procesos archivados - marque 6");
+        System.out.println(" - Para imprimir todos los procesos - marque 7");
+        System.out.println(" - Para salir - marque 8");
         System.out.println(" ");
         System.out.print("INGRESE NÚMERO: ");
 
@@ -134,14 +135,24 @@ public class Test {
                 controllerInterface.nextStep();
                 break;
             case 5:
-                System.out.println("==================");
-                System.out.println("lISTA DE PROCESOS");
-                System.out.println("==================");
+                System.out.println("=========================");
+                System.out.println("lISTA DE PROCESOS ACTIVOS");
+                System.out.println("=========================");
                 System.out.println();
-                PrintData.printTrials(court.getAllTrials());
+                PrintData.printTrials(court.getTrialsByStatus("Activo"));
+                court.deleteTrialsByStatus();
                 controllerInterface.nextStep();
                 break;
             case 6:
+                System.out.println("============================");
+                System.out.println("lISTA DE PROCESOS ARCHIVADOS");
+                System.out.println("============================");
+                System.out.println();
+                PrintData.printTrials(court.getTrialsByStatus("Archivado"));
+                court.deleteTrialsByStatus();
+                controllerInterface.nextStep();
+                break;
+            case 7:
                 System.out.println("======================");
                 System.out.println("IMPRESIÓN DE PROCESOS");
                 System.out.println("======================");
@@ -150,7 +161,7 @@ public class Test {
                 PrintData.printTrialsFile(court.getAllTrials());
                 controllerInterface.nextStep();
                 break;
-            case 7:
+            case 8:
                 break;
             default:
                 System.out.println("NUMERO INCORRECTO");

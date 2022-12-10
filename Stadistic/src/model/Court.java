@@ -7,6 +7,7 @@ public class Court {
     int max = 10;
     private final Trial[] trials = new Trial[max];
     private final Trial[] trialsByMonth = new Trial[max];
+    private final Trial[] trialsByStatus = new Trial[max];
 
     public void addTrial(Trial trial) {
         boolean isInserted = false;
@@ -91,7 +92,7 @@ public class Court {
     public int closesTrials(String type) {
         int numberCloses = 0;
         for (Trial trial : trials) {
-            if (trial.getStatus().equals("Archivado") && trial.getType().equals(type))
+            if (trial != null && trial.getStatus().equals("Archivado") && trial.getType().equals(type))
             {
                 numberCloses++;
             }
@@ -102,7 +103,7 @@ public class Court {
     public int activesTrials(String type) {
         int numberActives = 0;
         for (Trial trial : trials) {
-            if (Objects.equals(trial.getStatus(), "Activo") && Objects.equals(trial.getType(), type))
+            if (trial != null && Objects.equals(trial.getStatus(), "Activo") && Objects.equals(trial.getType(), type))
             {
                 numberActives++;
             }
@@ -126,8 +127,27 @@ public class Court {
         return trialsByMonth;
     }
 
+   public Trial[] getTrialsByStatus(String status) {
+        boolean isComplete = false;
+        for (int i = 0; i < trials.length && !isComplete; i++) {
+            if(trials[i] != null){
+                if(trials[i].getStatus().equals(status)){
+                    trialsByStatus[i] = trials[i];
+                }
+            } else {
+                isComplete = true;
+            }
+        }
+        return trialsByStatus;
+    }
+
+
     public void deleteTrialsByMonth(){
-        Arrays.fill(trialsByMonth, null);;
+        Arrays.fill(trialsByMonth, null);
+    }
+
+    public void deleteTrialsByStatus(){
+        Arrays.fill(trialsByStatus, null);
     }
 }
 
